@@ -34,12 +34,15 @@ angular.module('angularjs-bootstrap-datetimepicker', [])
 			format: '@',
 			todayBtn: '@',
 			weekStart: '@',
-			minuteStep: '@'
+			minuteStep: '@',
+            canRemove: '@',
+            canEdit: '@',
+            minView: '@'
 		},
 		template:
 			'<div class="input-append date form_datetime">' +
-	        '   <input size="16" type="text" value="" readonly>' +
-	        '   <span class="add-on"><i class="icon-remove"></i></span>' +
+	        '   <input size="16" type="text" value="" ng-readonly=!canEdit">' +
+	        '   <span ng-if="canRemove" class="add-on"><i class="icon-remove"></i></span>' +
 			'	<span class="add-on"><i class="icon-th"></i></span>' +
 	        '</div>',
 
@@ -54,6 +57,7 @@ angular.module('angularjs-bootstrap-datetimepicker', [])
 				autoclose: 1,
 				todayHighlight: 1,
 				startView: 2,
+                minView:_byDefault(scope.minView, 'month'),
 				forceParse: 0,
 				showMeridian: 1
 			})
